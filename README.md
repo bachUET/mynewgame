@@ -1,0 +1,1 @@
+game cho trước 7 mảnh ghép và yêu cầu xếp thành 1 hình trong 5 phút
