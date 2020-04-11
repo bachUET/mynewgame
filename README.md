@@ -1,1 +1,1 @@
-game cho trước 7 mảnh ghép và yêu cầu xếp thành 1 hình trong 5 phút
+Game điều khiển 1 chiếc máy bay vượt qua các chướng ngại vật để dành điểm số cao nhất
