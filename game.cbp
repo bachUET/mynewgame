@@ -31,7 +31,13 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="CommonFunc.cpp" />
+		<Unit filename="CommonFunc.h" />
+		<Unit filename="baseObject.cpp" />
+		<Unit filename="baseObject.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="mainCharacter.cpp" />
+		<Unit filename="mainCharacter.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

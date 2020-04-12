@@ -3,6 +3,9 @@
 
 BaseObject g_background;
 
+bool start = false;
+bool is_quit = false;
+
 bool InitData(){
     bool success = true;
     int ret = SDL_Init(SDL_INIT_VIDEO);
@@ -29,7 +32,7 @@ bool InitData(){
 }
 
 bool loadBackground(){
-    bool ret = g_background.LoadImageA("image/background.png",g_screen);
+    bool ret = g_background.LoadImg("image/background.png",g_screen);
     if (ret == false)
         return false;
 
@@ -45,10 +48,29 @@ void close(){
     IMG_Quit();
     SDL_Quit();
 }
-int main(int argc, char* argv[])
-{
+void LoadMenu(){
+    BaseObject Menu;
+    Menu.LoadImg("image//intro.png",g_screen);
+    while (!start){
+        Menu.Animate(g_screen,468,726,10);
+        while (SDL_PollEvent(&g_event)!=0){
+            if (g_event.type == SDL_KEYDOWN)
+               start= true;
+            if (g_event.type == SDL_QUIT){
+                is_quit = true;
+                start= true;
+                break;
+            }
+        }
+        SDL_RenderPresent(g_screen);
+    }
+
+}
+
+int main(int argc, char* argv[]){
     if (InitData() == false)
         return -1;
+    LoadMenu();
     if (loadBackground() == false)
         return -1;
     bool is_quit = false;

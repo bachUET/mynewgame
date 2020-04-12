@@ -25,3 +25,4 @@ const int COLOR_KEY_B = 180;
 const int RENDER_DRAW_COLOR = 0xff;
 #endif // COMMON_FUCTION_H_
 
+

@@ -11,8 +11,22 @@ BaseObject::BaseObject(){
 BaseObject::~BaseObject(){
     Free();
 }
+void BaseObject::Animate(SDL_Renderer* des,int width_,int height_,int number_){
+    for (int i = 0; i < number_; i++){
+        object_clip_[i].x = i*width_;
+        object_clip_[i].y = 0;
+        object_clip_[i].w = width_;
+        object_clip_[i].h = height_;
+    }
+    if (num == number_) num = 0;
+    SDL_Rect* current_clip = &object_clip_[num];
+    num++;
+    SDL_Rect renderQuad = {rect_.x, rect_.y, width_, height_};
+    SDL_RenderCopy(des, p_object_,current_clip, &renderQuad);
+    SDL_Delay(80);
+}
 
-bool BaseObject::LoadImage(std::string path, SDL_Renderer* screen){
+bool BaseObject::LoadImg(std::string path, SDL_Renderer* screen){
     SDL_Texture* new_texture = NULL;
 
     SDL_Surface* load_surface = IMG_Load(path.c_str());
@@ -43,3 +57,4 @@ void BaseObject::Free(){
         rect_.h = 0;
     }
 }
+

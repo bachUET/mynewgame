@@ -17,12 +17,16 @@ public:
         return p_object_;
     }
 
-    bool LoadImage(std::string path, SDL_Renderer* screen);
+    bool LoadImg(std::string path, SDL_Renderer* screen);
     void Render(SDL_Renderer* des, const SDL_Rect* clip = NULL);
     void Free();
+    void Animate(SDL_Renderer* des,int width_,int height_,int number_);
 protected:
     SDL_Texture* p_object_;
     SDL_Rect rect_;
+    SDL_Rect object_clip_[20];
+    int num = 0;
 };
 
 #endif // BASE_OBJECT_H_
+

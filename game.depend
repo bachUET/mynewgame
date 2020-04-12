@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1586356465 source:e:\bách\main.cpp
+1586532888 source:e:\bách\main.cpp
 	"CommonFunc.h"
 	"baseObject.h"
 
-1586352266 source:e:\bách\commonfunc.cpp
+1586527641 source:e:\bách\commonfunc.cpp
 	"CommonFunc.h"
 
-1586356884 e:\bách\commonfunc.h
+1586527731 e:\bách\commonfunc.h
 	<windows.h>
 	<string>
 	<SDL.h>
@@ -14,7 +14,7 @@
 	"SDL_mixer.h"
 	"SDL_ttf.h"
 
-1540997939 e:\bách\sdl_mixer.h
+1586357068 e:\bách\sdl_mixer.h
 	"SDL_stdinc.h"
 	"SDL_rwops.h"
 	"SDL_audio.h"
@@ -23,14 +23,14 @@
 	"begin_code.h"
 	"close_code.h"
 
-1454308948 e:\bách\sdl_ttf.h
+1586357068 e:\bách\sdl_ttf.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1586354820 source:e:\bách\baseobject.cpp
+1586533609 source:e:\bách\baseobject.cpp
 	"baseObject.h"
 
-1586352556 e:\bách\baseobject.h
+1586533179 e:\bách\baseobject.h
 	"CommonFunc.h"
 
