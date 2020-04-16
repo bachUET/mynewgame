@@ -5,7 +5,7 @@
 #include <string>
 #include <SDL.h>
 #include <SDL_image.h>
-#include "SDL_mixer.h"
+#include <SDL_mixer.h>
 #include "SDL_ttf.h"
 
 static SDL_Window* g_window = NULL;
@@ -23,6 +23,20 @@ const int COLOR_KEY_G = 175;
 const int COLOR_KEY_B = 180;
 
 const int RENDER_DRAW_COLOR = 0xff;
+
+const int FrameNum = 3;
+
+static int score = 0;
+static int score_ = 0;
+static Mix_Chunk* g_sound_fly;
+static Mix_Chunk* g_sound_die;
+static Mix_Chunk* g_sound_over;
+static Mix_Music* g_music;
+
+typedef struct Input{
+    int left_;
+    int right_;
+};
 #endif // COMMON_FUCTION_H_
 
 

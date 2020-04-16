@@ -33,11 +33,13 @@
 		</Compiler>
 		<Unit filename="CommonFunc.cpp" />
 		<Unit filename="CommonFunc.h" />
+		<Unit filename="MainObject.cpp" />
+		<Unit filename="MainObject.h" />
+		<Unit filename="Score.cpp" />
+		<Unit filename="Score.h" />
 		<Unit filename="baseObject.cpp" />
 		<Unit filename="baseObject.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="mainCharacter.cpp" />
-		<Unit filename="mainCharacter.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

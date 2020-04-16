@@ -1,17 +1,19 @@
 # depslib dependency file v1.0
-1586532888 source:e:\bách\main.cpp
+1586967422 source:e:\bách\main.cpp
 	"CommonFunc.h"
 	"baseObject.h"
+	"MainObject.h"
+	"Score.h"
 
 1586527641 source:e:\bách\commonfunc.cpp
 	"CommonFunc.h"
 
-1586527731 e:\bách\commonfunc.h
+1586854215 e:\bách\commonfunc.h
 	<windows.h>
 	<string>
 	<SDL.h>
 	<SDL_image.h>
-	"SDL_mixer.h"
+	<SDL_mixer.h>
 	"SDL_ttf.h"
 
 1586357068 e:\bách\sdl_mixer.h
@@ -28,9 +30,26 @@
 	"begin_code.h"
 	"close_code.h"
 
-1586533609 source:e:\bách\baseobject.cpp
+1586712698 source:e:\bách\baseobject.cpp
 	"baseObject.h"
 
-1586533179 e:\bách\baseobject.h
+1586713727 e:\bách\baseobject.h
 	"CommonFunc.h"
+
+1586967068 e:\bách\mainobject.h
+	"CommonFunc.h"
+	"baseObject.h"
+
+1586968338 source:e:\bách\mainobject.cpp
+	"MainObject.h"
+
+1586854931 source:e:\bách\score.cpp
+	"Score.h"
+	<string>
+	<sstream>
+	<iostream>
+
+1586855263 e:\bách\score.h
+	"CommonFunc.h"
+	"baseObject.h"
 
