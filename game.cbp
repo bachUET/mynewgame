@@ -33,13 +33,21 @@
 		</Compiler>
 		<Unit filename="CommonFunc.cpp" />
 		<Unit filename="CommonFunc.h" />
+		<Unit filename="ImpTimer.cpp" />
+		<Unit filename="ImpTimer.h" />
 		<Unit filename="MainObject.cpp" />
 		<Unit filename="MainObject.h" />
+		<Unit filename="Platform.cpp" />
+		<Unit filename="Platform.h" />
 		<Unit filename="Score.cpp" />
 		<Unit filename="Score.h" />
+		<Unit filename="ThreatObjects.cpp" />
+		<Unit filename="ThreatObjects.h" />
 		<Unit filename="baseObject.cpp" />
 		<Unit filename="baseObject.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="powerUp.cpp" />
+		<Unit filename="powerUp.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -48,7 +48,6 @@ void BaseObject::Render(SDL_Renderer* des, const SDL_Rect* clip){
 
     SDL_RenderCopy(des,p_object_,clip, &renderquad);
 }
-
 void BaseObject::Free(){
     if (p_object_ != NULL){
         SDL_DestroyTexture(p_object_);

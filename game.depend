@@ -1,20 +1,25 @@
 # depslib dependency file v1.0
-1586967422 source:e:\bách\main.cpp
+1587900269 source:e:\bách\main.cpp
+	<iostream>
+	<ctime>
 	"CommonFunc.h"
 	"baseObject.h"
 	"MainObject.h"
+	"ImpTimer.h"
+	"Platform.h"
+	"powerUp.h"
 	"Score.h"
+	"ThreatObjects.h"
 
 1586527641 source:e:\bách\commonfunc.cpp
 	"CommonFunc.h"
 
-1586854215 e:\bách\commonfunc.h
-	<windows.h>
-	<string>
+1588001919 e:\bách\commonfunc.h
+	<Windows.h>
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
-	"SDL_ttf.h"
+	<string>
 
 1586357068 e:\bách\sdl_mixer.h
 	"SDL_stdinc.h"
@@ -30,26 +35,78 @@
 	"begin_code.h"
 	"close_code.h"
 
-1586712698 source:e:\bách\baseobject.cpp
+1587305300 source:e:\bách\baseobject.cpp
 	"baseObject.h"
 
-1586713727 e:\bách\baseobject.h
+1587640984 e:\bách\baseobject.h
 	"CommonFunc.h"
 
-1586967068 e:\bách\mainobject.h
+1587719017 e:\bách\mainobject.h
 	"CommonFunc.h"
 	"baseObject.h"
+	"Platform.h"
 
-1586968338 source:e:\bách\mainobject.cpp
+1587739897 source:e:\bách\mainobject.cpp
 	"MainObject.h"
+	"Platform.h"
+	<iostream>
 
-1586854931 source:e:\bách\score.cpp
+1587739834 source:e:\bách\score.cpp
 	"Score.h"
 	<string>
 	<sstream>
 	<iostream>
 
-1586855263 e:\bách\score.h
+1587181386 e:\bách\score.h
+	"CommonFunc.h"
+	"baseObject.h"
+
+1587490322 source:e:\bách\fence.cpp
+	"fence.h"
+	"CommonFunc.h"
+
+1587394871 source:e:\bách\imptimer.cpp
+	"ImpTimer.h"
+	"CommonFunc.h"
+
+1587394806 e:\bách\imptimer.h
+
+1587489537 e:\bách\fence.h
+	"CommonFunc.h"
+	"baseObject.h"
+
+1587562301 e:\bách\background.h
+	"CommonFunc.h"
+	<cstring>
+	<string>
+	<SDL_image.h>
+
+1587552754 source:e:\bách\background.cpp
+	"background.h"
+	"CommonFunc.h"
+	<SDL_image.h>
+	<string>
+
+1587864980 e:\bách\platform.h
+	"CommonFunc.h"
+	"baseObject.h"
+
+1587609142 source:e:\bách\powerup.cpp
+	"PowerUp.h"
+
+1587632659 e:\bách\powerup.h
+	"CommonFunc.h"
+	"baseObject.h"
+	"Platform.h"
+
+1587632672 source:e:\bách\platform.cpp
+	"Platform.h"
+	"CommonFunc.h"
+
+1587609365 source:e:\bách\threatobjects.cpp
+	"ThreatObjects.h"
+
+1587632772 e:\bách\threatobjects.h
 	"CommonFunc.h"
 	"baseObject.h"
 

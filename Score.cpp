@@ -27,7 +27,7 @@ void Score::Show(SDL_Renderer* des,int score_){
         int n = str.size();
         for (int i = n - 1;i >= 0; i--){
             char temp = str[i];
-            SDL_Rect* current_clip = &score_clip_[temp-48];
+            SDL_Rect* current_clip = &score_clip_[temp - 48];
             SDL_Rect renderQuad = {rect_.x - score_width * (n-i-1), rect_.y, score_width, score_height};
             SDL_RenderCopy(des, p_object_,current_clip, &renderQuad);
         }
