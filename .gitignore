@@ -2,6 +2,8 @@
 /obj
 /Debug
 /.vs
+/sound
+/image
 *.dll
 *.o
 *.obj
