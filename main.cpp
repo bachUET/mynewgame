@@ -53,8 +53,8 @@ bool InitData(){
 }
 // Load Background
 bool LoadBackground(){
-    bool ret = g_background.LoadImg("image//background.png",g_screen);
-    if (ret == false )
+    bool test = g_background.LoadImg("image//background.png",g_screen);
+    if (test == false )
         return false;
     return true;
 }
@@ -68,20 +68,40 @@ void close(){
     IMG_Quit();
     SDL_Quit();
 }
+
+void LoadMenu(){
+    Mix_PlayMusic(g_music, -1);
+    BaseObject Menu;
+    Menu.LoadImg("image//Menu_clip.png",g_screen);
+    while (!start){
+        Menu.Animate(g_screen,SCREEN_WIDTH,SCREEN_HEIGHT,10);
+         while (SDL_PollEvent(&g_event)!=0){
+            if (g_event.type == SDL_KEYDOWN)
+               start= true;
+            if (g_event.type == SDL_QUIT){
+                is_quit = true;
+                start= true;
+                break;
+            }
+        }
+        SDL_RenderPresent(g_screen);
+    }
+}
+
 // Kiểm Tra Map Để Plat Không bị Trùng
-bool checkMap(Platform* plat_objects){
+void checkMap(Platform* plat_objects){
     Platform *plat1,*plat2;
     for (int i = 0; i < number; i++)
         for (int j = i + 1; j < number; j++){
             plat1 = plat_objects + i;
             plat2 = plat_objects + j;
             if ((!(plat1->Drop||plat2->Drop))&&
-                ((plat2->getX() >= plat1->getX()&& plat2->getX() <= plat1->getX() + width_platform_ && plat2->getY() >= plat1->getY() && plat2->getY() <= plat1->getY() + height_platform_)||(
-                plat2->getX() + width_platform_ >= plat1->getX() && plat2->getX()<=plat1->getX()&& plat2->getY()+height_platform_>=plat1->getY()&& plat2->getY()+height_platform_<=plat1->getY()+height_platform_)
-                ||(plat2->getX()>=plat1->getX()&& plat2->getX()<=plat1->getX()+width_platform_&& plat2->getY()+height_platform_>=plat1->getY()&& plat2->getY()+height_platform_<=plat1->getY()+height_platform_)
-                ||(plat2->getX()+width_platform_>= plat1->getX() && plat2->getX()<=plat1->getX()&&plat2->getY()>=plat1->getY()&&plat2->getY()<=plat1->getY()+height_platform_)
+                ((plat2->getX() >= plat1->getX()&& plat2->getX() <= plat1->getX() + width_platform_ && plat2->getY() >= plat1->getY() && plat2->getY() <= plat1->getY() + height_platform_)
+                ||(plat2->getX() + width_platform_ >= plat1->getX() && plat2->getX() <= plat1->getX()&& plat2->getY() + height_platform_ >= plat1->getY()&& plat2->getY() + height_platform_<= plat1->getY() + height_platform_)
+                ||(plat2->getX() >= plat1->getX()&& plat2->getX() <= plat1->getX() + width_platform_&& plat2->getY() + height_platform_ >= plat1->getY()&& plat2->getY() + height_platform_ <= plat1->getY() + height_platform_)
+                ||(plat2->getX() + width_platform_ >= plat1->getX() && plat2->getX() <= plat1->getX()&&plat2->getY() >= plat1->getY()&&plat2->getY() <= plat1->getY() + height_platform_)
                 ))
-                plat2->SetRect(rand()%(SCREEN_HEIGHT-height_platform_),-height_platform_-rand()%50);
+                plat2->SetRect(rand()%(SCREEN_HEIGHT-height_platform_),-height_platform_- rand() % 50);
         }
 }
 
@@ -114,8 +134,6 @@ bool checkJump(Platform* plat_objects,MainObject &p_player){
             }
         }
     }
-
-
     // Nếu người chơi vượt qua một chiều cao nào đó thì dịch chuyển cả map đi xuống
     if (p_player.getY() <= MAX_HEIGHT){
         loxo.SetRect(loxo.getX(),loxo.getY() - p_player.getY_val());
@@ -160,10 +178,10 @@ bool checkJump(Platform* plat_objects,MainObject &p_player){
             g_over.LoadImg("image//game_over_animate.png",g_screen);
         }
     }
-    // Kiểm tra xem nhân vật có giẫm vào Plat không để còn cho nhảy
+    // Kiểm tra xem nhân vật có giẫm vào Plat không để nhảy
     for (int t = 0; t < number; t++){
         plat = (plat_objects + t);
-        if ((p_player.getY_val() > 0)&&((p_player.getX() >= plat->getX()&& p_player.getX() <= plat->getX() + width_platform_ && abs( p_player.getY() + 30 - plat->getY()) <= 5)||
+        if ((p_player.getY_val() > 0)&&((p_player.getX() >= plat->getX()&&p_player.getX() <= plat->getX() + width_platform_ && abs( p_player.getY() + 30 - plat->getY()) <= 5)||
             (p_player.getX() + p_player.getWidth() >= plat->getX()&&
              p_player.getX() + p_player.getWidth() <= plat->getX() + width_platform_
              && abs(p_player.getY() + 30 - plat->getY()) <= 10))) {
@@ -174,7 +192,7 @@ bool checkJump(Platform* plat_objects,MainObject &p_player){
                     return true;
                 }
                 if (!p_player.on_ground) return true;
-                }
+            }
             // Nếu là Real Plat thì cho nhân vật nhảy lên, còn nếu là Fake Plat thì không làm gì
             else {
                 if (plat->Drop == false) Mix_PlayChannel(-1,g_sound_fake,0);
@@ -186,27 +204,8 @@ bool checkJump(Platform* plat_objects,MainObject &p_player){
     return false;
 }
 
-void LoadMenu(){
-    Mix_PlayMusic(g_music, -1);
-    BaseObject Menu;
-    Menu.LoadImg("image//Menu_clip.png",g_screen);
-    while (!start){
-        Menu.Animate(g_screen,SCREEN_WIDTH,SCREEN_HEIGHT,10);
-         while (SDL_PollEvent(&g_event)!=0){
-            if (g_event.type == SDL_KEYDOWN)
-               start= true;
-            if (g_event.type == SDL_QUIT){
-                is_quit = true;
-                start= true;
-                break;
-            }
-        }
-        SDL_RenderPresent(g_screen);
-    }
-}
-
 void reTry(Platform* plat_objects,MainObject *p_player){
-    p_player->x_pos_ = (plat_objects)->getX() + 10;
+    p_player->x_pos_ = (plat_objects)->getX() + 5;
     p_player->y_pos_ = (plat_objects)->getY() - 200;
     p_player->y_val_=0;
     for (int t = 0; t < number; t++){ // Tạo ra number tấm ván
@@ -256,7 +255,6 @@ int main(int argc, char* argv[]){
         int rand_x = rand() % (SCREEN_WIDTH - width_platform_);
         plat->SetRect(rand_x,rand_y);
     }
-    //plat_objects->object = 1;
     // Kiểm tra xem map có tấm ván nào bị trùng với nhau hay không
     checkMap(plat_objects);
     g_over.SetRect(30,SCREEN_HEIGHT + 420);
@@ -286,8 +284,6 @@ int main(int argc, char* argv[]){
     // Vòng lặp chính duy trì chương trình
     while (!is_quit){
         fps_timer.start();
-
-        // Bắt sự kiện từ người dùng
         while (SDL_PollEvent(&g_event)!=0){
             if (g_event.type == SDL_QUIT)
                 is_quit = true;
@@ -312,8 +308,6 @@ int main(int argc, char* argv[]){
         p_player.DoPlayer(checkJump(plat_objects,p_player),g_sound_jump,g_sound_feder);
         // Xuất hình ảnh nhân vật lên màn hình
         p_player.Show(g_screen);
-
-        //std::cout<<p_player.getY()<<"\n";
 
         score_bar_.Render(g_screen,NULL);
         p_score.Show(g_screen,score);

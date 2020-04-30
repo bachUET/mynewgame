@@ -2,7 +2,7 @@
 #include "Platform.h"
 #include <iostream>
 
-static bool temp = false;
+
 static bool press = false;
 
 MainObject::MainObject(){
@@ -57,15 +57,10 @@ void MainObject::set_clips(){
 // Xuất hình ảnh nhân vật lên màn hình
 void MainObject::Show(SDL_Renderer* des){
     // Hướng về bên trái thì load ảnh nhân vật bên trái
-    if (temp)
-    {}
-    else{
-        if (status_ == WALK_LEFT)
-            LoadImg("image//player_left.png",des);// Load ảnh bên trái
-        else
-            LoadImg("image//player_right.png",des); // Load ảnh bên phải
-
-    }
+    if (status_ == WALK_LEFT)
+        LoadImg("image//player_left.png",des);// Load ảnh bên trái
+    else
+        LoadImg("image//player_right.png",des); // Load ảnh bên phải
     if (input_type_.left_ == 1 || input_type_.right_ == 1)
         frame_++;
     else
@@ -99,7 +94,7 @@ void MainObject::HandleInputAction(SDL_Event events,  SDL_Renderer* screen){
                 break;
         case SDLK_DOWN:
                 high_jump = true;
-                //break;
+                break;
         default:
             break;
         }
@@ -124,8 +119,7 @@ void MainObject::HandleInputAction(SDL_Event events,  SDL_Renderer* screen){
 }
 // Hàm Di Chuyển Nhân Vật
 void MainObject::DoPlayer(bool check, Mix_Chunk* jumpsound, Mix_Chunk* highhighjumpsound){
-    temp = check;
-    if (check){//on_ground
+    if (check){
         if (highhigh_jump){
             y_val_-= 50;
             Mix_PlayChannel(-1,highhighjumpsound,0);
@@ -140,9 +134,8 @@ void MainObject::DoPlayer(bool check, Mix_Chunk* jumpsound, Mix_Chunk* highhighj
             Mix_PlayChannel(-1,jumpsound,0);
         }
     }
-    else {
+    else
         y_val_ += 0.8;
-    };
     if (!press){
         if (x_val_ >= 0){
             x_val_ -= 0.2;
@@ -171,9 +164,9 @@ void MainObject::DoPlayer(bool check, Mix_Chunk* jumpsound, Mix_Chunk* highhighj
         x_pos_ = SCREEN_WIDTH ;
     else if (x_pos_ >= SCREEN_WIDTH)
         x_pos_ = - width_frame_;
-    if (y_pos_+ height_frame_ >= SCREEN_HEIGHT+height_platform_){
-        if (y_pos_ >= SCREEN_HEIGHT + height_frame_+20)
-            y_pos_ = SCREEN_HEIGHT + height_frame_+20;
+    if (y_pos_+ height_frame_ >= SCREEN_HEIGHT + height_platform_){
+        if (y_pos_ >= SCREEN_HEIGHT + height_frame_ + 20)
+            y_pos_ = SCREEN_HEIGHT + height_frame_ + 20;
         on_ground = true;
     }
 }

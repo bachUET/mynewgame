@@ -1,6 +1,5 @@
 # depslib dependency file v1.0
-1587900269 source:e:\bách\main.cpp
-	<iostream>
+1588085098 source:e:\bách\main.cpp
 	<ctime>
 	"CommonFunc.h"
 	"baseObject.h"
@@ -46,7 +45,7 @@
 	"baseObject.h"
 	"Platform.h"
 
-1587739897 source:e:\bách\mainobject.cpp
+1588174919 source:e:\bách\mainobject.cpp
 	"MainObject.h"
 	"Platform.h"
 	<iostream>
