@@ -20,7 +20,7 @@ BaseObject g_over;
 PowerUp loxo;
 ThreatObjects UFO;
 
-// Khởi Tạo SDL
+// Khởi tạo môi trường SDL
 bool InitData(){
     bool success = true;
     int ret = SDL_Init(SDL_INIT_VIDEO);
@@ -68,7 +68,7 @@ void close(){
     IMG_Quit();
     SDL_Quit();
 }
-
+// Load màn hình menu Game
 void LoadMenu(){
     Mix_PlayMusic(g_music, -1);
     BaseObject Menu;
@@ -120,13 +120,17 @@ bool checkJump(Platform* plat_objects,MainObject &p_player){
         }
         // Nếu đi quá màn hình thì reset lại vị trí của Plat
         if (plat->getY() > SCREEN_HEIGHT){
-            if (tt == 0 && rand() % 2 == 1) plat->object = 1;
-            else if (tt == 0) plat->object = 0;
-            if (tt == 1 && rand() % 3 == 1) plat->object = 2;
-            else if (tt == 1) plat->object = 0;
+            if (tt == 0 && rand() % 2 == 1)
+                plat->object = 1;
+            else if (tt == 0)
+                plat->object = 0;
+            if (tt == 1 && rand() % 3 == 1)
+                plat->object = 2;
+            else if (tt == 1)
+                plat->object = 0;
             plat->SetRect(rand() % (SCREEN_WIDTH - width_platform_), -height_platform_ - rand() % 10);
             if (plat->getPlat_type() == FAKE_PLAT) plat->SetRect(rand() % SCREEN_WIDTH,-height_platform_ * 2);
-            // Hủy đi trạng thái rơi của Fake Plat
+        // Hủy đi trạng thái rơi của Fake Plat
             plat->Drop = false;
             if (Fake_Num <= MAX_FAKE_PLAT && rand() % 20 == 1 && tt != 0 && tt != 1){
                 plat->setPlat_type(FAKE_PLAT);
@@ -149,8 +153,8 @@ bool checkJump(Platform* plat_objects,MainObject &p_player){
                 case FAKE_PLAT:
                     plat->LoadImg("image//Platform_fake.png",g_screen);
                     break;
-        }
-            // Điểm số của người chơi
+            }
+            // Điểm số của người chơi, càng nhiều điểm thì số tấm ván càng ít đi
             score_ -= p_player.getY_val();
             score = score_/1000;
             if (abs(score-500) < 10) number = Plat_Num - 4;

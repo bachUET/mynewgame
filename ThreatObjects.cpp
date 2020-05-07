@@ -7,9 +7,3 @@ ThreatObjects::~ThreatObjects()
 {
 
 }
-void ThreatObjects::LoadMonster(int type){
-    if (type == 0)
-    {
-        //LoadImg("");
-    }
-}

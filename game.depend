@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1588085098 source:e:\bách\main.cpp
+1588235553 source:e:\bách\main.cpp
 	<ctime>
 	"CommonFunc.h"
 	"baseObject.h"
@@ -102,10 +102,10 @@
 	"Platform.h"
 	"CommonFunc.h"
 
-1587609365 source:e:\bách\threatobjects.cpp
+1588699061 source:e:\bách\threatobjects.cpp
 	"ThreatObjects.h"
 
-1587632772 e:\bách\threatobjects.h
+1588699084 e:\bách\threatobjects.h
 	"CommonFunc.h"
 	"baseObject.h"
 

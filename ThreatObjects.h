@@ -10,7 +10,6 @@ class ThreatObjects : public BaseObject{
     public:
         ThreatObjects();
         ~ThreatObjects();
-        void LoadMonster(int type);
         int type;
     private:
 };
