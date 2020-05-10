@@ -9,16 +9,16 @@
 #include "ThreatObjects.h"
 #undef main
 
-BaseObject g_background;
-int Fake_Num = 0;
-int number = Plat_Num;
-bool game_over = false;
-bool start = false;
-int count_ = 0;
-bool is_quit = false;
-BaseObject g_over;
-PowerUp loxo;
-ThreatObjects UFO;
+BaseObject g_background; // màn hình chơi
+int Fake_Num = 0; // số tấm ván giả
+int number = Plat_Num; // tổng số tấm ván
+bool game_over = false; // biến logic game đã kết thúc chưa
+bool start = false; // biến logic game đã bắt đầu chưa
+int count_ = 0; // biến đếm thời gian trễ để load âm thanh hết game và load frame Game Over
+bool is_quit = false; // biến logic đã thoát game chưa
+BaseObject g_over; // biến đối tượng frame Game Over
+PowerUp loxo; // biến lò xo
+ThreatObjects UFO; // biến quái vật
 
 // Khởi tạo môi trường SDL
 bool InitData(){
@@ -41,6 +41,7 @@ bool InitData(){
                 success = false;
         }
     }
+    // load các âm thanh
     if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1)
         return false;
     g_sound_jump = Mix_LoadWAV("sound//jump.wav");
@@ -105,13 +106,14 @@ void checkMap(Platform* plat_objects){
         }
 }
 
+// kiểm tra trạng thái nhảy của nhân vật
 bool checkJump(Platform* plat_objects,MainObject &p_player){
     Platform* plat;
-    checkMap(plat_objects); // Kiểm tra Map xem có ván nào bị trùng không.
+    checkMap(plat_objects); // Kiểm tra Map xem có ván nào bị trùng không
     for (int tt = 0; tt < number;tt++){
-        if (plat->object == 1)
+        if (plat->object == 1) // Set Vị trí cho lò xo
             loxo.SetRect(plat->getX() + width_platform_/2 - loxo_width/2,plat->getY() - loxo_height + 6);
-        if (plat->object == 2)
+        if (plat->object == 2) // Set Vị trí cho quái vật
             UFO.SetRect(plat->getX() + width_platform_/2 - width_monster_/2,plat->getY() - height_monster_ + 6);
         plat = (plat_objects + tt); // Tăng con trỏ lên 1 đơn vị để trỏ vào phần tử tiếp theo
         if (plat->Drop){ // Hiệu ứng Fake Plat rơi
@@ -163,6 +165,7 @@ bool checkJump(Platform* plat_objects,MainObject &p_player){
             if (abs(score-2000) < 10) number = Plat_Num - 16;
         }
     }
+    //Trạng thái khi nhân vật không có chỗ đáp
     if (p_player.on_ground){
         if (!game_over){
             g_over.Render(g_screen,NULL);
@@ -185,24 +188,25 @@ bool checkJump(Platform* plat_objects,MainObject &p_player){
     // Kiểm tra xem nhân vật có giẫm vào Plat không để nhảy
     for (int t = 0; t < number; t++){
         plat = (plat_objects + t);
-        if ((p_player.getY_val() > 0)&&((p_player.getX() >= plat->getX()&&p_player.getX() <= plat->getX() + width_platform_ && abs( p_player.getY() + 30 - plat->getY()) <= 5)||
+        // điều kiện nhân vật giẫm ván
+        if ((p_player.getY_val() > 0) && ((p_player.getX() >= plat->getX() && p_player.getX() <= plat->getX() + width_platform_ &&
+            abs( p_player.getY() + 30 - plat->getY()) <= 5)||
             (p_player.getX() + p_player.getWidth() >= plat->getX()&&
              p_player.getX() + p_player.getWidth() <= plat->getX() + width_platform_
              && abs(p_player.getY() + 30 - plat->getY()) <= 10))) {
-            if (plat->getPlat_type() == REAL_PLAT){
-                if (plat->object == 1) p_player.highhigh_jump = true;
-                if (plat->object == 2 && !p_player.on_ground){
-                    p_player.on_ground = true;
-                    return true;
+                if (plat->getPlat_type() == REAL_PLAT){
+                    if (plat->object == 1) p_player.highhigh_jump = true;
+                    if (plat->object == 2 && !p_player.on_ground){
+                        p_player.on_ground = true;
+                        return true;
+                    }
+                    if (!p_player.on_ground) return true;
                 }
-                if (!p_player.on_ground) return true;
-            }
             // Nếu là Real Plat thì cho nhân vật nhảy lên, còn nếu là Fake Plat thì không làm gì
-            else {
-                if (plat->Drop == false) Mix_PlayChannel(-1,g_sound_fake,0);
-                plat->Drop = true;
-            }
-
+                else {
+                    if (plat->Drop == false) Mix_PlayChannel(-1,g_sound_fake,0);
+                    plat->Drop = true;
+                }
         }
     }
     return false;

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1588235553 source:e:\bách\main.cpp
+1588990011 source:e:\bách\main.cpp
 	<ctime>
 	"CommonFunc.h"
 	"baseObject.h"
@@ -13,7 +13,7 @@
 1586527641 source:e:\bách\commonfunc.cpp
 	"CommonFunc.h"
 
-1588001919 e:\bách\commonfunc.h
+1588990047 e:\bách\commonfunc.h
 	<Windows.h>
 	<SDL.h>
 	<SDL_image.h>
